@@ -12,7 +12,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  return prompt("Enter rock, papers, or scissors:");
+  return prompt("Enter rock, papers, or scissors:").toLowerCase();
 }
 
 function capitalize(string) {
@@ -24,8 +24,6 @@ function playGame() {
   let humanScore = 0;
 
   function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-
     if (humanChoice === computerChoice) {
       console.log("It's a tie!");
     } else if (
