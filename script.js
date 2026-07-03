@@ -19,18 +19,30 @@ function capitalize(string) {
   return `${string.at(0).toUpperCase()}${string.slice(1).toLowerCase()}`;
 }
 
+function getRoundWinner(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    return "tie";
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "scissors" && computerChoice === "paper") ||
+    (humanChoice === "paper" && computerChoice === "rock")
+  ) {
+    return "human";
+  } else {
+    return "computer";
+  }
+}
+
 function playGame() {
   let computerScore = 0;
   let humanScore = 0;
 
   function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
+    const roundWinner = getRoundWinner(humanChoice, computerChoice);
+
+    if (roundWinner === "tie") {
       console.log("It's a tie!");
-    } else if (
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "scissors" && computerChoice === "paper") ||
-      (humanChoice === "paper" && computerChoice === "rock")
-    ) {
+    } else if (roundWinner === "human") {
       console.log(
         `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`,
       );
