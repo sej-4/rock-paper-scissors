@@ -55,13 +55,6 @@ function playGame() {
     }
   }
 
-  for (let i = 0; i < 5; i++) {
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-
-    playRound(humanChoice, computerChoice);
-  }
-
   console.log(`Human: ${humanScore} Computer: ${computerScore}`);
   if (humanScore === computerScore) {
     console.log(`It's a tie! Game Over`);
