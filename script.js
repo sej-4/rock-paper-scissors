@@ -11,10 +11,6 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  return prompt("Enter rock, papers, or scissors:").toLowerCase();
-}
-
 function capitalize(string) {
   return `${string.at(0).toUpperCase()}${string.slice(1).toLowerCase()}`;
 }
