@@ -34,19 +34,16 @@ function playGame() {
   let humanScore = 0;
 
   function playRound(humanChoice, computerChoice) {
+    const result = document.querySelector("div");
     const roundWinner = getRoundWinner(humanChoice, computerChoice);
 
     if (roundWinner === "tie") {
-      console.log("It's a tie!");
+      result.textContent = "It's a tie!";
     } else if (roundWinner === "human") {
-      console.log(
-        `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`,
-      );
+      result.textContent = `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`;
       humanScore++;
     } else {
-      console.log(
-        `You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`,
-      );
+      result.textContent = `You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`;
       computerScore++;
     }
   }
