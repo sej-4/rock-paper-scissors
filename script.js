@@ -34,18 +34,23 @@ function playGame() {
   let humanScore = 0;
 
   function playRound(humanChoice, computerChoice) {
-    const result = document.querySelector("div");
+    const div = document.querySelector("div");
+    const result = document.querySelector("#result");
+    const score = document.querySelector("#score");
     const roundWinner = getRoundWinner(humanChoice, computerChoice);
 
-    if (roundWinner === "tie") {
-      result.textContent = "It's a tie!";
-    } else if (roundWinner === "human") {
+    if (roundWinner === "human") {
       result.textContent = `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`;
       humanScore++;
-    } else {
+    } else if (roundWinner === "computer") {
       result.textContent = `You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`;
       computerScore++;
+    } else {
+      result.textContent = "It's a tie!";
     }
+
+    score.textContent = `Human: ${humanScore} Computer: ${computerScore}`;
+    div.append(result, score);
   }
 
   const buttons = document.querySelectorAll("button");
@@ -58,7 +63,6 @@ function playGame() {
     });
   });
 
-  console.log(`Human: ${humanScore} Computer: ${computerScore}`);
   if (humanScore === computerScore) {
     console.log(`It's a tie! Game Over`);
   } else if (humanScore > computerScore) {
