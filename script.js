@@ -50,7 +50,13 @@ function playRound(humanChoice, computerChoice) {
 
   score.textContent = `Human: ${humanScore} Computer: ${computerScore}`;
   div.append(result, score);
-  if (checkGameOver()) displayGameWinner();
+  if (checkGameOver()) {
+    displayGameWinner();
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+      button.disabled = true;
+    });
+  }
 }
 
 const buttons = document.querySelectorAll("button");
