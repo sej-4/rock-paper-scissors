@@ -33,29 +33,15 @@ let computerScore = 0;
 let humanScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  const div = document.querySelector("div");
-  const result = document.querySelector("#result");
-  const score = document.querySelector("#score");
   const roundWinner = getRoundWinner(humanChoice, computerChoice);
 
-  if (roundWinner === "human") {
-    result.textContent = `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`;
-    humanScore++;
-  } else if (roundWinner === "computer") {
-    result.textContent = `You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`;
-    computerScore++;
-  } else {
-    result.textContent = "It's a tie!";
-  }
+  displayRoundWinner(roundWinner, humanChoice, computerChoice);
+  updateScore(roundWinner);
+  displayScore();
 
-  score.textContent = `Human: ${humanScore} Computer: ${computerScore}`;
-  div.append(result, score);
   if (checkGameOver()) {
     displayGameWinner();
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach((button) => {
-      button.disabled = true;
-    });
+    disableButtons();
   }
 }
 
@@ -82,4 +68,40 @@ function displayGameWinner() {
       : "Game Over! Computer won the game";
   gameWinner.style.backgroundColor = "yellow";
   div.append(gameWinner);
+}
+
+function disableButtons() {
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+
+function displayRoundWinner(roundWinner, humanChoice, computerChoice) {
+  const div = document.querySelector("div");
+  const result = document.querySelector("#result");
+
+  if (roundWinner === "human") {
+    result.textContent = `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`;
+  } else if (roundWinner === "computer") {
+    result.textContent = `You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`;
+  } else {
+    result.textContent = "It's a tie!";
+  }
+
+  div.appendChild(result);
+}
+
+function updateScore(roundWinner) {
+  if (roundWinner === "human") {
+    humanScore++;
+  } else if (roundWinner === "computer") {
+    computerScore++;
+  }
+}
+
+function displayScore() {
+  const div = document.querySelector("div");
+  const score = document.querySelector("#score");
+  score.textContent = `Human: ${humanScore} Computer: ${computerScore}`;
 }
